@@ -1,7 +1,7 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include "Altino.h"
 #include <stdio.h>
-#define distancetillwall 225 // º®±îÁö °Å¸®
+#define distancetillwall 220
 int main()
 {
 	SensorData data;
