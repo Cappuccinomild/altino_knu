@@ -17,7 +17,7 @@ int main()
 	Steering(2);
 	for (int i = 0; i < 200; i++) {
 		data = Sensor(1);
-		Go(400, 400);
+		Go(350, 350);
 		
 		dsensor = dsensor - data.IRSensor[3];
 		if (data.IRSensor[3] < distancetillwalls3|| data.IRSensor[2] > backdistancewall2) {
@@ -30,13 +30,13 @@ int main()
 		
 		printf("%d %d %d \n",data.IRSensor[2], data.IRSensor[3], dsensor);
 		if (data.IRSensor[2] > distancetillwalls2) {
-			if (dsensor < 0)
+			if (data.IRSensor[3] <= 350)
 				Steering(1);
-			if (dsensor > 0)
+			if (data.IRSensor[3] > 350)
 				Steering(3);
 		}
 		else {
-			Go(400, 400);
+			Go(350, 350);
 			Steering(3);
 		}
 		dsensor = data.IRSensor[3];
