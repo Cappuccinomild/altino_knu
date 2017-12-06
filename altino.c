@@ -20,7 +20,15 @@ int main()
 		Go(400, 400);
 		
 		dsensor = dsensor - data.IRSensor[3];
-		if (data.IRSensor[3] < distancetillwalls3|| data.IRSensor[2] > backdistancewall2) {
+		if (data.IRSensor[3] < distancetillwalls3 /* 3번센서가 벽 밖으로 나감 */) {
+				printf("%d %d %d \n", data.IRSensor[2], data.IRSensor[3], dsensor);
+				Steering(1);
+				Go(-400, -400);
+				delay(500);
+			
+		}
+		
+		if (data.IRSensor[2] > backdistancewall2 /* 2번센서가 벽과 충돌 */) {
 				printf("%d %d %d \n", data.IRSensor[2], data.IRSensor[3], dsensor);
 				Steering(3);
 				Go(-400, -400);
