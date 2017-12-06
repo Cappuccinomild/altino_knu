@@ -1,7 +1,8 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include "Altino.h"
 #include <stdio.h>
-#define distancetillwall 225 // º®±îÁö °Å¸®
+#define distancetillwalls2 225 //2번센서 벽까지 거리 
+#define distancetillwalls3 153 //3번 센서 벽까지 거리
 int main()
 {
 	SensorData data;
@@ -16,15 +17,18 @@ int main()
 	for (int i = 0; i < 200; i++) {
 		data = Sensor(1);
 		Go(400, 400);
-		if (data.IRSensor[3] <distancetillwall) {
-			printf("%d %d %d \n", data.IRSensor[2], data.IRSensor[3], dsensor);
-			Steering(1);
-			Go(-400, -400);
-			delay(500);
-		}
+		
 		dsensor = dsensor - data.IRSensor[3];
+		if (data.IRSensor[3] < distancetillwalls3|| data.IRSensor[2] > 700) {
+				printf("%d %d %d \n", data.IRSensor[2], data.IRSensor[3], dsensor);
+				Steering(3);
+				Go(-400, -400);
+				delay(500);
+			
+		}
+		
 		printf("%d %d %d \n",data.IRSensor[2], data.IRSensor[3], dsensor);
-		if (data.IRSensor[2] > distancetillwall) {
+		if (data.IRSensor[2] > distancetillwalls2) {
 			if (dsensor < 0)
 				Steering(1);
 			if (dsensor > 0)
