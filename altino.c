@@ -3,6 +3,7 @@
 #include <stdio.h>
 #define distancetillwalls2 225 //2번센서 벽까지 거리 
 #define distancetillwalls3 153 //3번 센서 벽까지 거리
+#define backdistancewall2 700 //후진시 2번센서 거리
 int main()
 {
 	SensorData data;
@@ -19,7 +20,7 @@ int main()
 		Go(400, 400);
 		
 		dsensor = dsensor - data.IRSensor[3];
-		if (data.IRSensor[3] < distancetillwalls3|| data.IRSensor[2] > 700) {
+		if (data.IRSensor[3] < distancetillwalls3|| data.IRSensor[2] > backdistancewall2) {
 				printf("%d %d %d \n", data.IRSensor[2], data.IRSensor[3], dsensor);
 				Steering(3);
 				Go(-400, -400);
